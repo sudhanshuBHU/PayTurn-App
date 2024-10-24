@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Graduate&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Algrey';
+}
+/* navbarhead.js */
+#navbarhead {
+    font-family: 'Algrey';
+    font-size: 2.2rem;
+    /* color: white; */
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px rgb(57, 205, 16);
+}
+#navbtn{
+    /* height: 2rem; */
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: red;
+}
+
+/* signup */
+.form-title{
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-decoration: underline;
+}
+.form-group{
+    font-size: 1.1rem;
+}
+.signwrapper{
+    margin-top: 4rem;
+    border: 1px solid rgb(28, 133, 162);
+}
+input{
+    caret-color: red;
+    padding: 0.2rem;
+}
+#signup, #signupLogin{
+    width: 7rem;
+    height: 2.5rem;
+    background-color: rgb(28, 133, 162);
+    color: white;
+}
+#signupLogin{
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.i-am-already{
+    margin-bottom: 1rem;
+    color: rgb(28, 133, 162);
+}
