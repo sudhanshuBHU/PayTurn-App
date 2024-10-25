@@ -1,17 +1,22 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function LogIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle login logic here
         console.log('Login attempt with:', username, password);
     };
-
+    const handleAlready = () => {
+        console.log('Already have an account');
+        navigate('/signup');
+    }
     return (
         <div className="container">
             <div className="container">
@@ -41,8 +46,8 @@ export default function LogIn() {
                         <button type="submit" id='signupLogin'>Log In</button>
                     </form>
                     <div className="form-group">
-                        <label htmlFor="agreeTerms" className="label-agree-term" style={{color:"red"}}>
-                            <span><span></span></span>&nbsp;&nbsp; Already have a account.
+                        <label htmlFor="agreeTerms" className="alreadyHaveAccount" onClick={handleAlready}>
+                            <span><span></span></span>Already have a account.
                         </label>
                     </div>
                 </div>

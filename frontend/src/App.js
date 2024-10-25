@@ -7,10 +7,14 @@ import './style.css';
 import Individual from './Components/Individual';
 import SignUp from './Components/SignUp';
 import LogIn from './Components/LogIn';
+import SectionContainer from './Components/SectionContainer';
+import EntryTransaction from './Components/EntryTransaction';
 
 function App() {
   return (
    <>
+   <SectionContainer/>
+   {/* <EntryTransaction/> */}
    {/* <SignUp/> */}
    {/* <LogIn/> */}
    {/* <Individual/> */}

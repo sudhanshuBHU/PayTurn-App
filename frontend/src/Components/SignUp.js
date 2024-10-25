@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { Toast } from 'primereact/toast';
 // import { Button } from 'primereact/button';   
 // import { useRef } from 'react';
@@ -11,6 +12,7 @@ export default function SignUp() {
         rePassword: '',
         agreeTerms: false
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -33,7 +35,10 @@ export default function SignUp() {
         console.log('Form submitted:', formData);
         // Here you would typically send the data to your backend
     };
-
+    const handleLogin = () => {
+        console.log('Already have an account');
+        navigate('/login');
+    }
     return (
         <div className='container'>
             <div className="container">
@@ -66,7 +71,7 @@ export default function SignUp() {
                             <button type="submit" name="signup" id="signup" className="form-submit">Register</button>
                         </div>
                     </form>
-                    <div className="i-am-already">I am already a member</div>
+                    <div className="i-am-already" onClick={handleLogin}>I am already a member</div>
                 </div>
             </div>
         </div>
