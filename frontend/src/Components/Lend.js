@@ -6,7 +6,7 @@ import { setDataGive, setDataTake, setName, setAmount, setUser } from '../Redux/
 export default function Lend(props) {
     const [runningData, setRunningData] = useState([]);
     // const [user, setUser] = useState("Anshu");
-    const name = localStorage.getItem('payTurnName');
+    // const name = localStorage.getItem('payTurnName');
     const user = localStorage.getItem('payTurnUsername');
     const dispatch = useDispatch();
     const navigate = useNavigate();

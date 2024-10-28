@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
 export default function Individual() {
-  const count = useSelector((state) => state.counter.value)
-  const dispatch = useDispatch();
+  // const count = useSelector((state) => state.counter.value)
   const [combinedData, setCombinedData] = useState([]);
   const dataGive = useSelector((state) => state.data.dataGive);
   const dataTake = useSelector((state) => state.data.dataTake);

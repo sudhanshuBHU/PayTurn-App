@@ -4,7 +4,6 @@ import { handleError, handleSuccess } from './utils/toast';
 import { ToastContainer } from 'react-toastify';
 import Lend from './Lend';
 import Section1 from './Section1';
-import Footer from './Footer';
 import EntryTransaction from './EntryTransaction';
 import axios from 'axios';
 
