@@ -12,6 +12,9 @@ import { store } from './Redux/Store';
 import Dashboard from './Components/Dashboard';
 import SectionContainer from './Components/SectionContainer';
 import Individual from './Components/Individual';
+import Footer from './Components/Footer';
+import TermAndConditions from './Components/utils/TermsAndConditions';
+import PrivacyAndPolicies from './Components/utils/PrivacyAndPolicies';
 
 function App() {
   const [isAuth, setIsAuth] = React.useState(false);
@@ -32,13 +35,16 @@ function App() {
       <Provider store={store}>
         <NavbarHead />
         <Routes>
-          <Route path="/" element={<SectionContainer />} />
+          <Route path="/" element={isAuth ? <Navigate to='/dashboard' /> : <SectionContainer />} />
           <Route path='/login' element={isAuth ? <Navigate to='/dashboard' /> : <LogIn />} />
           <Route path='/signup' element={isAuth ? <Navigate to='/dashboard' /> : <SignUp />} />
           <Route path='/dashboard' element={isAuth ? <Dashboard /> : <Navigate to='/login' />} />
-          <Route path='/lend/individual' element={isAuth ? <Individual /> : <Navigate to={'/login'}/>} />
+          <Route path='/lend/individual' element={isAuth ? <Individual /> : <Navigate to={'/login'} />} />
+          <Route path='/terms' element={<TermAndConditions />} />
+          <Route path='/privacy' element={<PrivacyAndPolicies />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
+        <Footer />
       </Provider>
     </>
   );

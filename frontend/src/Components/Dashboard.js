@@ -139,7 +139,7 @@ export default function Dashboard() {
                 hideEntry && <EntryTransaction name={name} user={user} allUsers={allUsers} />
             }
             <Lend takeData={takeData} giveData={giveData} allUsers={allUsers} />
-            <Footer />
+            {/* <Footer /> */}
             <ToastContainer />
         </div>
     )

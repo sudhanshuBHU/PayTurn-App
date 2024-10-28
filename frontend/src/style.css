@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Graduate&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     font-family: 'Algrey';
 }
-
-.myborder{
+body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.myborder {
     border: 1px solid rgb(28, 133, 162);
 }
+
 /* navbarhead.js */
 #navbarhead {
     font-family: 'Algrey';
@@ -19,7 +24,8 @@
     -webkit-text-stroke: 1px rgb(57, 205, 16);
     cursor: pointer;
 }
-#navbtn{
+
+#navbtn {
     /* height: 2rem; */
     background: none;
     border: none;
@@ -28,42 +34,49 @@
     color: red;
 }
 
-.headerImg{
+.headerImg {
     width: 100%;
-    height:100%;
+    height: 100%;
     /* scale: 120%; */
     object-fit: cover;
     transform: translateX(-30vw);
-    
+
 }
 
-.headingImgDiv{
-    width: 70vw;
+.headingImgDiv {
+    width: 50vw;
     height: 10vh;
     margin-bottom: -2rem;
 }
 
-@media screen and (max-width: 768px){
-    .headerImg{
+@media screen and (max-width: 768px) {
+    .headerImg {
         transform: translateX(-20vw);
+    }
+
+    .headingImgDiv {
+        width: 70vw;
     }
 }
 
 /* signup */
-.form-title{
+.form-title {
     font-size: 3rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
     text-decoration: underline;
 }
-.form-group{
+
+.form-group {
     font-size: 1.1rem;
 }
-.signwrapper{
+
+.signwrapper {
     margin-top: 4rem;
     border: 1px solid rgb(28, 133, 162);
 }
-input{
+
+input {
     caret-color: red;
     padding: 0.2rem;
     outline: none;
@@ -72,48 +85,85 @@ input{
     border-radius: 0.2rem;
     padding: 0 0.5rem;
 }
-input::placeholder{
+
+input::placeholder {
     padding: 0 0.5rem;
     font-size: 1rem;
 }
-#signup, #signupLogin{
+
+#signup,
+#signupLogin {
     width: 7rem;
     height: 2.5rem;
     background-color: rgb(28, 133, 162);
     color: white;
 }
-#signupLogin{
+
+#signupLogin {
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
-.i-am-already{
+
+.i-am-already {
     margin-bottom: 1rem;
     color: rgb(28, 133, 162);
     cursor: pointer;
 }
-.alreadyHaveAccount{
+
+.alreadyHaveAccount {
     cursor: pointer;
     color: rgb(28, 133, 162);
 }
 
-.errormsg{
+.errormsg {
     color: red;
     font-size: 0.9rem;
 }
-.errormsgDiv{
+
+.errormsgDiv {
     transform: translateX(20vw);
 }
+
 /* SectionContainer */
-.sectionName{
+.sectionName {
     font-size: 1.4rem;
     color: rgb(28, 133, 162);
     margin-bottom: 2rem;
 }
 
+.wrapperSectionContainer {
+    margin-top: 3rem;
+    /* height: ; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.sectionHeading {
+    /* text-align: left; */
+    font-size: 1.5rem;
+    color: rgb(28, 133, 162);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* .sectionContent {
+    
+} */
+.container-section {
+    /* width: ; */
+    height: 15rem;
+}
+
+.sectionButton {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
 
 /* Dashboard */
-.buttonDashboard{
+.buttonDashboard {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,12 +171,13 @@ input::placeholder{
     border: 1px solid rgb(28, 133, 162);
     height: 3rem;
 }
-.wrapper{
-    height: 100vh;
+
+.wrapper {
+    height: 100%;
     width: 100vw;
 }
 
-.dashButton{
+.dashButton {
     /* background-color: rgb(28, 133, 162); */
     /* color: white; */
     width: 10rem;
@@ -135,7 +186,8 @@ input::placeholder{
     background-color: rgb(29, 173, 134);
     color: aliceblue;
 }
-.welcome{
+
+.welcome {
     font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -143,7 +195,7 @@ input::placeholder{
 
 
 /* Entry Transaction */
-.entryWrapper{
+.entryWrapper {
     border: 1px solid rgb(28, 133, 162);
 }
 
@@ -151,17 +203,99 @@ input::placeholder{
 
 
 /* section1 */
-.section1SpanUser{
+.section1SpanUser {
     color: rgb(241, 143, 32);
     font-size: 1.4rem;
 }
 
-.padingAdjustment{
+.padingAdjustment {
     padding: 0.1rem;
 }
 
 /* Individual */
 
-.infoIndividual{
+.infoIndividual {
     margin-top: 2rem;
+}
+
+/* Contact */
+.contactHead {
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.contactDesc {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.contactName {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+textarea {
+    padding: 0 1rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@media screen and (max-width: 600px) {
+    textarea {
+        width: 72vw;
+    }
+}
+
+
+.footerContainer {
+    height: 26rem;
+    /* margin-bottom: 2rem; */
+}
+
+.footerbtn {
+    border: none;
+    cursor: pointer;
+    background-color: rgb(70, 147, 186);
+    color: aliceblue;
+    padding: 0.5rem 0.8rem;
+}
+
+.footerSecond {
+    height: 40vh;
+    margin-bottom: 4rem;
+}
+
+.footerSecond div {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.footerSecond div img {
+    height: 3.5rem;
+    transform: translateX(-10%);
+}
+
+.inta,
+.linked {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.linked :hover,
+.inta :hover,
+.footerSecond div img:hover {
+    transform: scale(110%);
+    transition: ease 1s;
+}
+
+/* terms */
+.privacy {
+    height: 100%;
+    margin-top: 5rem;
+}
+
+.terms {
+    height: 100%;
+    margin-top: 3rem;
 }

@@ -17,8 +17,7 @@ export default function Individual() {
 
   useEffect(() => {
     // console.log(dataGive, dataTake);
-    // console.log(name, user);
-    // console.log(pname, puser);
+
     let filterData = [...dataGive, ...dataTake];
     filterData = filterData.filter((val) => {
       if (val.payee_username === puser && val.payer_username === user) return true;
@@ -26,6 +25,9 @@ export default function Individual() {
       else return false;
     });
     console.log(filterData);
+    filterData.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
     setCombinedData(filterData);
 
     // prevent the page from refreshing

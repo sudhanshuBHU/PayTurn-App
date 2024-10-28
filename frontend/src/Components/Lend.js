@@ -138,7 +138,7 @@ export default function Lend(props) {
         finalCalculation();
         dispatch(setDataGive(props.giveData));
         dispatch(setDataTake(props.takeData));
-    }, [props.allUsers])
+    }, [props.allUsers,props.giveData,props.takeData])
     return (
         <div className='container'>
             <div className="container">
