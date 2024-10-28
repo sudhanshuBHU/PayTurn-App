@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRouter = require('./src/routes/signupAndLoginAuth');
 const addTransactionRouter = require('./src/routes/addTransaction');
+const contactus = require('./src/routes/contactus');
 
 const port = process.env.PORT || 8000;
 const databaseUrl = process.env.DATABASE_URL;
@@ -24,6 +25,8 @@ app.use('/auth',authRouter);
 // db add transaction routes
 app.use('/addTransaction', addTransactionRouter);
 
+// contact us ->feedback
+app.use('/contactUs', contactus);
 // default route handler
 const defaultRouteHandler = (req, res) => {
     res.send("At default route");
