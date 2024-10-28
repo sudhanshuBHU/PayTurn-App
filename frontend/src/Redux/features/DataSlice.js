@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: "Anshu",
-    name: "Loading",
+    user: "username Loading",
+    name: "name Loading",
     amount: 0,
     dataTake: [],
     dataGive: []

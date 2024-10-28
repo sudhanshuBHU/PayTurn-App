@@ -2,26 +2,20 @@ import React from 'react';
 import '../style.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import header from './utils/heading.png';
 
 export default function NavbarHead() {
     const navigate = useNavigate();
-    const user = useSelector(state => state.user);
+
     const handleHomeClick = () => {
         navigate('/');
-        // localStorage.removeItem('user');
-        // window.location.reload();
     }
     return (
         <div className="container mt-3">
-            <div className="container container d-flex justify-content-between">
+            <div className="container container d-flex justify-content-between headingImgDiv">
                 <div className=" container" id='navbarhead' onClick={handleHomeClick}>
-                    Pay-Turn
-                </div>
-                <div className="container d-flex ">
-                    {
-                        user === "Loading" ? <button className='ml-auto' id='navbtn'>Logout</button> : ""
-                    }
+                    {/* Pay-Turn */}
+                    <img src={header} className='headerImg' alt="header" />
                 </div>
             </div>
         </div>

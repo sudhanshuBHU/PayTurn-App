@@ -1,142 +1,154 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setDataGive, setDataTake, setName, setAmount } from '../Redux/features/DataSlice';
+import { setDataGive, setDataTake, setName, setAmount, setUser } from '../Redux/features/DataSlice';
 
-export default function Lend() {
+export default function Lend(props) {
     const [runningData, setRunningData] = useState([]);
-    const [user, setUser] = useState("Anshu");
+    // const [user, setUser] = useState("Anshu");
+    const name = localStorage.getItem('payTurnName');
+    const user = localStorage.getItem('payTurnUsername');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const dataGive = [
-        {
-            Payer: "Anshu",
-            Payee: "Aakash",
-            Price: 500,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    // const dataGive = [
+    //     {
+    //         Payer: "Anshu",
+    //         Payee: "Aakash",
+    //         Price: 500,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        },
-        {
-            Payer: "Anshu",
-            Payee: "Abhay",
-            Price: 500,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     },
+    //     {
+    //         Payer: "Anshu",
+    //         Payee: "Abhay",
+    //         Price: 500,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        },
-        {
-            Payer: "Anshu",
-            Payee: "Soum",
-            Price: 500,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     },
+    //     {
+    //         Payer: "Anshu",
+    //         Payee: "Soum",
+    //         Price: 500,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        },
-        {
-            Payer: "Anshu",
-            Payee: "Jindal",
-            Price: 500,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     },
+    //     {
+    //         Payer: "Anshu",
+    //         Payee: "Jindal",
+    //         Price: 500,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        }
-    ];
-    const dataTake = [
-        {
-            Payer: "Aakash",
-            Payee: "Anshu",
-            Price: 500,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     }
+    // ];
+    // const dataTake = [
+    //     {
+    //         Payer: "Aakash",
+    //         Payee: "Anshu",
+    //         Price: 500,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        },
-        {
-            Payer: "Abhay",
-            Payee: "Anshu",
-            Price: 700,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     },
+    //     {
+    //         Payer: "Abhay",
+    //         Payee: "Anshu",
+    //         Price: 700,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        },
-        {
-            Payer: "Soum",
-            Payee: "Anshu",
-            Price: 300,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     },
+    //     {
+    //         Payer: "Soum",
+    //         Payee: "Anshu",
+    //         Price: 300,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        },
-        {
-            Payer: "Jindal",
-            Payee: "Anshu",
-            Price: 900,
-            Date: 12 + "sun",
-            Time: "12:12",
-            Description: "fooding",
-            Status: "pen"
+    //     },
+    //     {
+    //         Payer: "Jindal",
+    //         Payee: "Anshu",
+    //         Price: 900,
+    //         Date: 12 + "sun",
+    //         Time: "12:12",
+    //         Description: "fooding",
+    //         Status: "pen"
 
-        }
-    ];
-    const members = ["Aakash", "Anshu", "Abhay", "Soum", "Jindal", "Riya"];
+    //     }
+    // ];
+    // const [giveData, setGivedata] = useState(props.giveData);
+    // const [takeData, setTakeData] = useState(props.takeData);
+    // const [members, setMembers] = useState(props.allUsers);
+
     const finalCalculation = () => {
         const arr = [];
-        members.forEach((val) => {
-            arr.push({ name: val, amount: 0 });
+        // console.log(members);
+        // console.log(props.allUsers);
+
+
+        props.allUsers.forEach((val) => {
+            arr.push({ name: val.name, username: val.username, amount: 0 });
         })
         // console.log(arr);
         arr.forEach((mem) => {
-            dataGive.forEach((val) => {
-                if (mem.name !== user && val.Payee === mem.name) mem.amount = mem.amount + val.Price;
-            });
+            if (mem.username !== user)
+                props.giveData.forEach((val) => {
+                    if (val.payee_username === mem.username) mem.amount = mem.amount + val.price;
+                });
         });
         // console.log(arr);
         arr.forEach((mem) => {
-            dataTake.forEach((val) => {
-                if (mem.name !== user && val.Payer === mem.name) mem.amount = mem.amount - val.Price;
-            });
+            if (mem.username !== user)
+                props.takeData.forEach((val) => {
+                    if (val.payer_username === mem.username) mem.amount = mem.amount - val.price;
+                });
         });
         setRunningData(arr);
+        console.log(arr);
+
     }
-    const handleIndividual = (v_name,amount) => {
-        // setUser(e.target.value);
-        console.log(v_name);
-        dispatch(setDataGive(dataGive));
-        dispatch(setDataTake(dataTake));
+    const handleIndividual = (v_name, amount, v_user) => {
+        // console.log(v_name);
+        // console.log(v_user);
+        
+        dispatch(setUser(v_user));
         dispatch(setName(v_name));
         dispatch(setAmount(amount));
         navigate('/lend/individual');
     }
     useEffect(() => {
         finalCalculation();
-        // dispatch(setDataGive(dataGive));
-        // dispatch(setDataTake(dataTake));
-        // dispatch(setName(user));
-    }, [])
+        dispatch(setDataGive(props.giveData));
+        dispatch(setDataTake(props.takeData));
+    }, [props.allUsers])
     return (
         <div className='container'>
             <div className="container">
                 <div className="container border border-info mt-3">
-                    <h2 className='text-center'>{user}</h2>
+                    <h3 className='text-center'>Final Standings</h3>
                     <div className='row pt-1 pb-1 font-weight-bold border'>
-                        <div className="col-5">Payee</div>
-                        <div className="col-3">Total 💵</div>
-                        <div className="col-2">Status</div>
-                        <div className="col-2">View</div>
+                        <div className="col-5 border">Payee</div>
+                        <div className="col-3 border">Total</div>
+                        <div className="col-2 border">Status</div>
+                        <div className="col-2 border">View</div>
 
                     </div>
                     {
@@ -146,11 +158,11 @@ export default function Lend() {
                                     {
                                         val.name === user ? "" : val.amount === 0 ? "" :
                                             <>
-                                                <div className="col-5 border">{val.name}</div>
+                                                <div className="col-5 border padingAdjustment">{val.name}</div>
                                                 <div className="col-3 border">{val.amount}</div>
-                                                <div className="col-2 border">{val.amount > 0 ? "Take" : "Give"}</div>                                               
-                                                <div className="col-2 border" onClick={(e) => handleIndividual(val.name,val.amount)}>Click</div>
-                                               
+                                                <div className="col-2 border">{val.amount > 0 ? "Take" : "Give"}</div>
+                                                <div className="col-2 border" onClick={(e) => handleIndividual(val.name, val.amount, val.username)}>Click</div>
+
                                             </>
                                     }
                                 </div>

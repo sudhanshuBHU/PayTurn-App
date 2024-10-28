@@ -4,11 +4,9 @@ import { useNavigate } from 'react-router-dom';
 export default function SectionContainer() {
     const navigate = useNavigate();
     const handleRegister = () =>{
-        console.log('clicked');
         navigate('/signup');
     }
     const handleLogin = () =>{
-        console.log('clicked');
         navigate('/login');
     }
     return (
