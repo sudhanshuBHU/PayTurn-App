@@ -10,6 +10,8 @@ import axios from 'axios';
 
 export default function SignUp() {
     const navigate = useNavigate();
+    const [error, setError] = useState(false);
+    const [existingUsername, setExistingUsername] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         username: '',
@@ -17,9 +19,22 @@ export default function SignUp() {
         rePassword: '',
         agreeTerms: false
     });
+    const handleUsernameType = (value) => {
+        if (existingUsername === '') {
+            setError(false);
+        }
+        else if (existingUsername === value) {
+            setError(true);
+        } else return setError(false);
+    }
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
+        // console.log(name, value, type, checked);
+        if (name === "username") {
+            handleUsernameType(value);
+        }
+
         setFormData(prevState => ({
             ...prevState,
             [name]: type === 'checkbox' ? checked : value
@@ -43,7 +58,24 @@ export default function SignUp() {
         if (!formData.agreeTerms) {
             return handleWarning("Please agree to the terms of service.");
         }
+        let f = false;
         // console.log('Form submitted:', formData);
+        await axios.get("http://localhost:8000/addTransaction/checkUsername?username=" + formData.username)
+            .then((data) => {
+                // console.log(data);
+                if (!data.data.flag) {
+                    handleWarning("Username already exists!");
+                    setError(true);
+                    f = true;
+                    setExistingUsername(formData.username);
+                    return;
+                }
+            }).catch((error) => {
+                handleError("Some error occured!");
+                navigate('/signup');
+                return;
+            });
+        if (f) return;
         const newUser = {
             name: formData.name,
             username: formData.username,
@@ -89,6 +121,9 @@ export default function SignUp() {
                         <div className="form-group">
                             <label htmlFor="username">Username:&nbsp;&nbsp;</label>
                             <input type="text" name="username" id="username" placeholder="Your Username" onChange={handleChange} value={formData.username} />
+                            <div className="errormsgDiv">
+                                {error && <span className='errormsg'>* user already exists!</span>}
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password:&nbsp;&nbsp;&nbsp;</label>

@@ -57,4 +57,21 @@ const findAllMembers = async (req, res) => {
         message: 'All members fetched successfully'
     });
 }
-module.exports = { findAllTransactionPayee, findAllTransactionPayer, findAllMembers };
+
+const checkUsername = async (req, res) => {
+    let flag = true;
+    try {
+        const member = await users.findOne({ username: req.query.username });
+        if (member) {
+            flag = false;
+        }
+    } catch (err) {
+        res.json({ message: err.message, success: false });
+    }
+    res.json({
+        success: true,
+        flag: flag
+    });
+}
+
+module.exports = { findAllTransactionPayee, findAllTransactionPayer, findAllMembers, checkUsername };

@@ -96,6 +96,13 @@ input::placeholder{
     color: rgb(28, 133, 162);
 }
 
+.errormsg{
+    color: red;
+    font-size: 0.9rem;
+}
+.errormsgDiv{
+    transform: translateX(20vw);
+}
 /* SectionContainer */
 .sectionName{
     font-size: 1.4rem;
