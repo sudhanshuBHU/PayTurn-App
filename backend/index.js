@@ -25,7 +25,9 @@ app.use(bodyParser.json());
 // }
 // app.options('*', cors(corsOptions));
 app.use(cors({
-    origin: 'https://pay-turn-app.vercel.app'
+    origin: "*",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
 // signup and login routes
