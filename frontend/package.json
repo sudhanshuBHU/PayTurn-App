@@ -2,6 +2,7 @@
   "name": "payturn",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://pay-turn-app-api.vercel.app",
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
