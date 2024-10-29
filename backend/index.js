@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 // DB connection
 require('./src/models/dbConnect');
+
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRouter = require('./src/routes/signupAndLoginAuth');
