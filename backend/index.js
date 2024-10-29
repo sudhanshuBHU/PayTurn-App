@@ -24,10 +24,12 @@ app.use(bodyParser.json());
 //     methods:['GET','POST','PUT','DELETE'],
 // }
 // app.options('*', cors(corsOptions));
-app.use(cors());
+app.use(cors({
+    origin: 'https://pay-turn-app.vercel.app'
+}));
 
 // signup and login routes
-app.use('/auth',authRouter);
+app.use('/auth', authRouter);
 
 // db add transaction routes
 app.use('/addTransaction', addTransactionRouter);
