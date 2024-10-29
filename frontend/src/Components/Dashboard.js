@@ -42,7 +42,7 @@ export default function Dashboard() {
     useEffect(() => {
         // console.log(user);
 
-        axios.get(`http://localhost:8000/addTransaction/allTransactionPayer?payer_username=${user}`, {
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allTransactionPayer?payer_username=${user}`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -59,7 +59,7 @@ export default function Dashboard() {
             });
 
 
-        axios.get(`http://localhost:8000/addTransaction/allTransactionPayee?payee_username=${user}`, {
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allTransactionPayee?payee_username=${user}`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -74,7 +74,7 @@ export default function Dashboard() {
             .catch(err => {
                 handleError("Session Expired");
             });
-        axios.get(`http://localhost:8000/addTransaction/allMembers`, {
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allMembers`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
