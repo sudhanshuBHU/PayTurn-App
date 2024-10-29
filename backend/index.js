@@ -18,13 +18,13 @@ const databaseUrl = process.env.DATABASE_URL;
 // middlewares
 app.use(express.json());
 app.use(bodyParser.json());
-const corsOptions = {
-    origin:"*",
-    credential:true,
-    methods:['GET','POST','PUT','DELETE'],
-}
-app.options('*', cors(corsOptions));
-app.use(cors(corsOptions));
+// const corsOptions = {
+//     origin:"*",
+//     credential:true,
+//     methods:['GET','POST','PUT','DELETE'],
+// }
+// app.options('*', cors(corsOptions));
+app.use(cors());
 
 // signup and login routes
 app.use('/auth',authRouter);
