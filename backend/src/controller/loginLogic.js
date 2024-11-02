@@ -26,7 +26,7 @@ const login = async (req, res) => {
             });
             return;
         }
-        const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
+        const token = jwt.sign({ username: username }, `${process.env.JWT_SECRET}`);
 
         // console.log("loged in");
         res.json({

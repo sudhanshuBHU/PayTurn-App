@@ -11,8 +11,8 @@ const authRouter = require('./src/routes/signupAndLoginAuth');
 const addTransactionRouter = require('./src/routes/addTransaction');
 const contactus = require('./src/routes/contactus');
 
-const port = process.env.PORT || 8000;
-const databaseUrl = process.env.DATABASE_URL;
+const port = `${process.env.PORT}` || 8000;
+// const databaseUrl = process.env.DATABASE_URL;
 // const port = 8000;
 
 // middlewares
