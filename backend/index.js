@@ -11,6 +11,12 @@ const authRouter = require('./src/routes/signupAndLoginAuth');
 const addTransactionRouter = require('./src/routes/addTransaction');
 const contactus = require('./src/routes/contactus');
 
+app.options('*', cors()); 
+app.use(cors({
+    origin: "https://pay-turn-app.vercel.app/",
+    credentials: true
+}));
+
 const port = `${process.env.PORT}` || 8000;
 // const databaseUrl = process.env.DATABASE_URL;
 // const port = 8000;
@@ -24,8 +30,7 @@ app.use(bodyParser.json());
 //     methods:['GET','POST','PUT','DELETE'],
 // }
 // app.options('*', cors(corsOptions));
-app.options('*', cors()); 
-app.use(cors());
+
     // {
     // origin: "*",
     // credentials: true,
