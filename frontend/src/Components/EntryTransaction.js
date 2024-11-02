@@ -47,11 +47,15 @@ export default function EntryTransaction(props) {
         await axios.post('https://pay-turn-app-api.vercel.app/addTransaction/newTransaction', transaction)
             .then(res => {
                 handleSuccess("Transaction added successfully.");
+                let tempDet = {
+                    payee: transaction.payee,
+                    payee_username: transaction.payee_username
+                }
                 setTransaction({
                     payer: user,
                     payer_username: payerUser,
-                    payee: "",
-                    payee_username: "",
+                    payee: tempDet.payee,
+                    payee_username: tempDet.payee_username,
                     price: 0,
                     date: currentDate,
                     time: currentTime,
@@ -113,7 +117,7 @@ export default function EntryTransaction(props) {
                             name="price"
                             value={transaction.price}
                             onChange={handleChange}
-                            placeholder="Price"
+                        // placeholder={transaction.price}
                         />
                     </div>
                     <div className='mt-2'>
