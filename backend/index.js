@@ -13,7 +13,7 @@ const contactus = require('./src/routes/contactus');
 
 app.options('*', cors()); 
 app.use(cors({
-    origin: "https://pay-turn-app.vercel.app/",
+    origin: "https://pay-turn-app.vercel.app",
     credentials: true
 }));
 
