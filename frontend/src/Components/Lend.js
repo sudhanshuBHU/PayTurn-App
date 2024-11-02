@@ -10,90 +10,7 @@ export default function Lend(props) {
     const user = localStorage.getItem('payTurnUsername');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const dataGive = [
-    //     {
-    //         Payer: "Anshu",
-    //         Payee: "Aakash",
-    //         Price: 500,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
 
-    //     },
-    //     {
-    //         Payer: "Anshu",
-    //         Payee: "Abhay",
-    //         Price: 500,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     },
-    //     {
-    //         Payer: "Anshu",
-    //         Payee: "Soum",
-    //         Price: 500,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     },
-    //     {
-    //         Payer: "Anshu",
-    //         Payee: "Jindal",
-    //         Price: 500,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     }
-    // ];
-    // const dataTake = [
-    //     {
-    //         Payer: "Aakash",
-    //         Payee: "Anshu",
-    //         Price: 500,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     },
-    //     {
-    //         Payer: "Abhay",
-    //         Payee: "Anshu",
-    //         Price: 700,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     },
-    //     {
-    //         Payer: "Soum",
-    //         Payee: "Anshu",
-    //         Price: 300,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     },
-    //     {
-    //         Payer: "Jindal",
-    //         Payee: "Anshu",
-    //         Price: 900,
-    //         Date: 12 + "sun",
-    //         Time: "12:12",
-    //         Description: "fooding",
-    //         Status: "pen"
-
-    //     }
-    // ];
     // const [giveData, setGivedata] = useState(props.giveData);
     // const [takeData, setTakeData] = useState(props.takeData);
     // const [members, setMembers] = useState(props.allUsers);
@@ -122,7 +39,7 @@ export default function Lend(props) {
                 });
         });
         setRunningData(arr);
-        console.log(arr);
+        // console.log(arr);
 
     }
     const handleIndividual = (v_name, amount, v_user) => {

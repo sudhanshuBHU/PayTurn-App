@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { handleError, handleSuccess } from './utils/toast';
 import axios from 'axios';
+import Spin from './utils/Spin';
 
 export default function EntryTransaction(props) {
     // const members = ["Aakash", "Anshu", "Abhay", "Soum", "Jindal", "Riya"];
@@ -19,8 +20,9 @@ export default function EntryTransaction(props) {
         time: currentTime,
         description: ""
     });
+    const [isLoading, setIsLoading] = React.useState(false);
     // console.log(transaction);
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setTransaction(prev => ({
@@ -41,7 +43,8 @@ export default function EntryTransaction(props) {
         if (transaction.description.length < 2) {
             transaction.description = "Not Given";
         }
-        await axios.post('http://localhost:8000/addTransaction/newTransaction', transaction)
+        setIsLoading(true);
+        await axios.post('https://pay-turn-app-api.vercel.app/addTransaction/newTransaction', transaction)
             .then(res => {
                 handleSuccess("Transaction added successfully.");
                 setTransaction({
@@ -58,6 +61,7 @@ export default function EntryTransaction(props) {
             .catch(err => {
                 handleError(err.response.data.error);
             });
+        setIsLoading(false);
         // console.log(transaction);
     };
     const handleSelect = (e) => {
@@ -75,6 +79,9 @@ export default function EntryTransaction(props) {
         <div className="container">
             <div className="container">
                 <div className="container mt-3 entryWrapper">
+                    {
+                        isLoading && <Spin />
+                    }
                     <h2 className='mt-3'>Enter Transaction</h2>
                     {/* <form onSubmit={handleSubmit}> */}
                     <div className='mt-2'>
@@ -92,7 +99,7 @@ export default function EntryTransaction(props) {
                         <select name="payee" id="payee" onChange={handleSelect}>
                             <option value="default">Select Payee</option>
                             {
-                                members.map((member, i) => (
+                                members.filter(m => m.username !== props.user).map((member, i) => (
                                     <option key={i} value={member.username}>{member.name}</option>
                                 ))
                             }

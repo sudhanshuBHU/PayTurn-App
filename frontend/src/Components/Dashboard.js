@@ -6,7 +6,7 @@ import Lend from './Lend';
 import Section1 from './Section1';
 import EntryTransaction from './EntryTransaction';
 import axios from 'axios';
-// import Spin from './utils/Spin';
+import Spin from './utils/Spin';
 
 
 export default function Dashboard() {
@@ -21,6 +21,7 @@ export default function Dashboard() {
     const [takeData, setTakeData] = useState([]);
     const [giveData, setGiveData] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleLogout = () => {
 
@@ -42,7 +43,8 @@ export default function Dashboard() {
 
     useEffect(() => {
         // console.log(user);
-        axios.get(`http://localhost:8000/addTransaction/allTransactionPayer?payer_username=${user}`, {
+        setIsLoading(true);
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allTransactionPayer?payer_username=${user}`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -59,7 +61,7 @@ export default function Dashboard() {
             });
 
 
-        axios.get(`http://localhost:8000/addTransaction/allTransactionPayee?payee_username=${user}`, {
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allTransactionPayee?payee_username=${user}`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -74,7 +76,7 @@ export default function Dashboard() {
             .catch(err => {
                 handleError("Session Expired");
             });
-        axios.get(`http://localhost:8000/addTransaction/allMembers`, {
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allMembers`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -100,6 +102,7 @@ export default function Dashboard() {
                     navigate('/login');
                 }, 1000);
             });
+        setIsLoading(false);
     }, []);
 
     return (
@@ -124,6 +127,9 @@ export default function Dashboard() {
             <div className="container">
                 <div className="container">
                     <div className=' container buttonDashboard'>
+                        {
+                            isLoading && <Spin />
+                        }
                         {
                             hideEntrySec && <button className='btn dashButton' onClick={() => { setHideEntrySec(false); setHideEntry(true); }}>Add Transaction</button>
                         }

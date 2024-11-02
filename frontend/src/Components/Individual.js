@@ -23,7 +23,7 @@ export default function Individual() {
       else if (val.payer_username === puser && val.payee_username === user) return true;
       else return false;
     });
-    console.log(filterData);
+    // console.log(filterData);
     filterData.sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
     });

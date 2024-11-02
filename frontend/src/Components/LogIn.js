@@ -23,7 +23,7 @@ export default function LogIn() {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://localhost:8000/auth/login', {
+            const response = await axios.post('https://pay-turn-app-api.vercel.app/auth/login', {
                 username,
                 password
             });

@@ -7,6 +7,7 @@ import { handleSuccess } from './utils/toast';
 import { handleError } from './utils/toast';
 import { handleWarning } from './utils/toast';
 import axios from 'axios';
+import Spin from './utils/Spin';
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -19,6 +20,8 @@ export default function SignUp() {
         rePassword: '',
         agreeTerms: false
     });
+    const [loading, setLoading] = useState(false);
+
     const handleUsernameType = (value) => {
         if (existingUsername === '') {
             setError(false);
@@ -60,7 +63,8 @@ export default function SignUp() {
         }
         let f = false;
         // console.log('Form submitted:', formData);
-        await axios.get("http://localhost:8000/addTransaction/checkUsername?username=" + formData.username)
+        setLoading(true);
+        await axios.get("https://pay-turn-app-api.vercel.app/addTransaction/checkUsername?username=" + formData.username)
             .then((data) => {
                 // console.log(data);
                 if (!data.data.flag) {
@@ -75,6 +79,8 @@ export default function SignUp() {
                 navigate('/signup');
                 return;
             });
+        setLoading(false);
+
         if (f) return;
         const newUser = {
             name: formData.name,
@@ -82,7 +88,10 @@ export default function SignUp() {
             password: formData.password,
             rePassword: formData.rePassword
         };
-        await axios.post("http://localhost:8000/auth/signup", newUser)
+
+        setLoading(true);
+
+        await axios.post("https://pay-turn-app-api.vercel.app/auth/signup", newUser)
             .then((data) => {
                 // console.log(data);
                 console.log("signup successful! ");
@@ -102,6 +111,7 @@ export default function SignUp() {
                 console.log(error);
                 handleError("Some error occured!");
             });
+        setError(false);
     };
 
     const handleLogin = () => {
@@ -140,6 +150,11 @@ export default function SignUp() {
                         </div>
                         <div className="form-group form-button">
                             <button type="submit" name="signup" id="signup" className="form-submit">Register</button>
+                        </div>
+                        <div>
+                            {
+                                loading && <Spin/>
+                            }
                         </div>
                     </form>
                     <div className="i-am-already" onClick={handleLogin}>I am already a member. <u>Login</u></div>
