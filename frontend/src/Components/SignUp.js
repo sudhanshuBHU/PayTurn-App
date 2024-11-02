@@ -60,7 +60,7 @@ export default function SignUp() {
         }
         let f = false;
         // console.log('Form submitted:', formData);
-        await axios.get("https://pay-turn-app-api.vercel.app/addTransaction/checkUsername?username=" + formData.username)
+        await axios.get("http://localhost:8000/addTransaction/checkUsername?username=" + formData.username)
             .then((data) => {
                 // console.log(data);
                 if (!data.data.flag) {
@@ -82,7 +82,7 @@ export default function SignUp() {
             password: formData.password,
             rePassword: formData.rePassword
         };
-        await axios.post("https://pay-turn-app-api.vercel.app/auth/signup", newUser)
+        await axios.post("http://localhost:8000/auth/signup", newUser)
             .then((data) => {
                 // console.log(data);
                 console.log("signup successful! ");

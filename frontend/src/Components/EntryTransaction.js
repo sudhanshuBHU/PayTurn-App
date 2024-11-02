@@ -41,7 +41,7 @@ export default function EntryTransaction(props) {
         if (transaction.description.length < 2) {
             transaction.description = "Not Given";
         }
-        await axios.post('https://pay-turn-app-api.vercel.app/addTransaction/newTransaction', transaction)
+        await axios.post('http://localhost:8000/addTransaction/newTransaction', transaction)
             .then(res => {
                 handleSuccess("Transaction added successfully.");
                 setTransaction({

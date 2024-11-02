@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { handleError, handleSuccess } from './utils/toast';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
+import Spin from './utils/Spin';
 // import { useDispatch } from 'react-redux';
 // import { setName, setUser } from '../Redux/features/DataSlice';
 
-export default function LogIn () {
+export default function LogIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     // const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
@@ -20,12 +22,14 @@ export default function LogIn () {
         }
 
         try {
-            const response = await axios.post('https://pay-turn-app-api.vercel.app/auth/login', {
+            setIsLoading(true);
+            const response = await axios.post('http://localhost:8000/auth/login', {
                 username,
                 password
             });
+            setIsLoading(false);
             // console.log(response);
-            if(response.data.success === false){
+            if (response.data.success === false) {
                 handleError(response.data.message);
                 navigate('/login');
                 return;
@@ -86,6 +90,11 @@ export default function LogIn () {
                         </div>
                         <button type="submit" id='signupLogin'>Log In</button>
                     </form>
+                    <div className='spinner-wrapper'>
+                        <div className='spinner-container'>
+                            {isLoading && <Spin />}
+                        </div>
+                    </div>
                     <div className="form-group">
                         <label htmlFor="agreeTerms" className="alreadyHaveAccount" onClick={handleAlready}>
                             <span><span></span></span> Don't have a account. <u>Signup</u>
@@ -93,7 +102,7 @@ export default function LogIn () {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }

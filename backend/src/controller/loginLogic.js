@@ -40,7 +40,7 @@ const login = async (req, res) => {
         console.log("error at login", err);
         res.json({
             success: false,
-            message: err
+            message: "try login again " + err
         });
     }
 };

@@ -6,6 +6,7 @@ import Lend from './Lend';
 import Section1 from './Section1';
 import EntryTransaction from './EntryTransaction';
 import axios from 'axios';
+// import Spin from './utils/Spin';
 
 
 export default function Dashboard() {
@@ -41,8 +42,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         // console.log(user);
-
-        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allTransactionPayer?payer_username=${user}`, {
+        axios.get(`http://localhost:8000/addTransaction/allTransactionPayer?payer_username=${user}`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -50,8 +50,8 @@ export default function Dashboard() {
             .then((res) => {
                 handleSuccess("Data Fetched Successfully");
                 setGiveData(res.data.data);
-                console.log("giveData");
-                console.log(res.data.data);
+                // console.log("giveData");
+                // console.log(res.data.data);
 
             })
             .catch(err => {
@@ -59,7 +59,7 @@ export default function Dashboard() {
             });
 
 
-        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allTransactionPayee?payee_username=${user}`, {
+        axios.get(`http://localhost:8000/addTransaction/allTransactionPayee?payee_username=${user}`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -67,14 +67,14 @@ export default function Dashboard() {
             .then((res) => {
                 // handleSuccess("Data Fetched Successfully");
                 setTakeData(res.data.data);
-                console.log("takeData");
-                console.log(res.data.data);
+                // console.log("takeData");
+                // console.log(res.data.data);
 
             })
             .catch(err => {
                 handleError("Session Expired");
             });
-        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allMembers`, {
+        axios.get(`http://localhost:8000/addTransaction/allMembers`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
@@ -107,9 +107,9 @@ export default function Dashboard() {
             <div className="container">
                 <div className="container ">
                     <div className="container d-flex mb-3">
-                    {
-                        isLogin ? <button className='ml-auto' id='navbtn' onClick={handleLogout}>Logout</button> : ""
-                    }
+                        {
+                            isLogin ? <button className='ml-auto' id='navbtn' onClick={handleLogout}>Logout</button> : ""
+                        }
                     </div>
                 </div>
             </div>

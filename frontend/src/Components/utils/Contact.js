@@ -16,7 +16,7 @@ export default function Contact(props) {
             handleError('Please fill all the fields');
             return;
         }
-        await axios.post('https://pay-turn-app-api.vercel.app/contactUs/contactUs', contactDetails)
+        await axios.post('http://localhost:8000/contactUs/contactUs', contactDetails)
             .then(res => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 handleSuccess('Thank you for contacting us. We will get back to you ASAP!');

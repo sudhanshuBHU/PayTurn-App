@@ -23,7 +23,7 @@ export default function Footer() {
 
             <div className="row mt-2">
               <Link to='https://www.linkedin.com/in/sudhanshu-shekhar-7979b2214/' target='_blank' className="col linked"><FontAwesomeIcon icon={faLinkedinIn} /></Link>
-              <Link to='https://www.instagram.com/anshuprajapati/profilecard/?igsh=bHFnYWowcXhieGVr' className="col inta"><FontAwesomeIcon icon={faInstagram} /></Link>
+              <Link to='https://www.instagram.com/_anshu__prajapati_/profilecard/?igsh=bHFnYWowcXhieGVr' className="col inta"><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link to='https://github.com/sudhanshuBHU/' className="col inta"><FontAwesomeIcon icon={faGithub} /></Link>
               <Link to='https://sudhanshubhu.github.io/myPortfolio_Sudhanshu/' className="col inta"><FontAwesomeIcon icon={faSuperpowers} /></Link>
             </div>
