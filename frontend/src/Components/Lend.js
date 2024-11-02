@@ -42,6 +42,7 @@ export default function Lend(props) {
         // console.log(arr);
 
     }
+
     const handleIndividual = (v_name, amount, v_user) => {
         // console.log(v_name);
         // console.log(v_user);
@@ -51,11 +52,13 @@ export default function Lend(props) {
         dispatch(setAmount(amount));
         navigate('/lend/individual');
     }
+
     useEffect(() => {
         finalCalculation();
         dispatch(setDataGive(props.giveData));
         dispatch(setDataTake(props.takeData));
     }, [props.allUsers,props.giveData,props.takeData])
+
     return (
         <div className='container'>
             <div className="container">
@@ -78,7 +81,7 @@ export default function Lend(props) {
                                                 <div className="col-5 border padingAdjustment">{val.name}</div>
                                                 <div className="col-3 border">{val.amount}</div>
                                                 <div className="col-2 border">{val.amount > 0 ? "Take" : "Give"}</div>
-                                                <div className="col-2 border" onClick={(e) => handleIndividual(val.name, val.amount, val.username)}>Click</div>
+                                                <div className="col-2 border" onClick={(e) => handleIndividual(val.name, val.amount, val.username)} style={{cursor:"pointer"}}>Click</div>
 
                                             </>
                                     }
