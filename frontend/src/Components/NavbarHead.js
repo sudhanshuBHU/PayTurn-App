@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style.css';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import header from './utils/heading.png';
 

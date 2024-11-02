@@ -1,17 +1,17 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleError, handleSuccess } from './utils/toast';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { setName, setUser } from '../Redux/features/DataSlice';
+// import { useDispatch } from 'react-redux';
+// import { setName, setUser } from '../Redux/features/DataSlice';
 
 export default function LogIn () {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

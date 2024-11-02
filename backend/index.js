@@ -24,11 +24,13 @@ app.use(bodyParser.json());
 //     methods:['GET','POST','PUT','DELETE'],
 // }
 // app.options('*', cors(corsOptions));
-app.use(cors({
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}));
+app.options('*', cors()); 
+app.use(cors());
+    // {
+    // origin: "*",
+    // credentials: true,
+    // methods: ["GET", "POST", "PUT", "DELETE"]
+// })
 
 // signup and login routes
 app.use('/auth', authRouter);
