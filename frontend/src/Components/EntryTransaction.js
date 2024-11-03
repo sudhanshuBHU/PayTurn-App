@@ -104,7 +104,7 @@ export default function EntryTransaction(props) {
                             <option value="default">Select Payee</option>
                             {
                                 members.filter(m => m.username !== props.user).map((member, i) => (
-                                    <option key={i} value={member.username}>{member.name}</option>
+                                    <option key={i} value={member.username}>{member.name - member.username}</option>
                                 ))
                             }
                         </select>
