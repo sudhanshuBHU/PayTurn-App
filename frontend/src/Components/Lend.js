@@ -80,7 +80,7 @@ export default function Lend(props) {
                     {
                         runningData.map((val, i) => {
                             return (
-                                <div key={i} className='row ' style={{ color: val.amount > 0 ? "blue" : "red" }}>
+                                <div key={i} className='' style={{ color: val.amount > 0 ? "blue" : "red" }}>
                                     {
                                         val.name === user ? "" : val.amount === 0 ? "" :
                                             <div className='adjustCellWrapperLend'>
