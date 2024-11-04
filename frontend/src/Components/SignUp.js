@@ -119,7 +119,7 @@ export default function SignUp() {
         navigate('/login');
     }
     return (
-        <div className='container'>
+        <div className='container mt-2'>
             <div className="container">
                 <div className="container signwrapper">
                     <h2 className="form-title">Sign up</h2>

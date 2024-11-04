@@ -62,13 +62,13 @@ export default function LogIn() {
     }
 
     return (
-        <div className="container">
+        <div className="container mt-2">
             <div className="container">
                 <div className="container signwrapper">
                     <h2 className='form-title'>Login</h2>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="username">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <label htmlFor="username" className=''>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <input
                                 type="username"
                                 id="username"

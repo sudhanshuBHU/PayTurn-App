@@ -45,34 +45,42 @@ export default function Individual() {
 
   return (
     <div>
-      <div className='container'>
+      <div className='container mt-1'>
         <div className="container">
-          <div className="container border border-info mt-5">
-            <div className='text-right'>
+          <div className="container border border-info">
+            <div className='text-right mt-1'>
               <button className='btn' onClick={handleBack}>Back</button>
             </div>
             <h2 className='text-center'>All Transactions</h2>
             <h4 style={{ color: final >= 0 ? "green" : "red" }}>Final Standing : Rs {final}</h4>
-            <div className='row pt-1 pb-1 font-weight-bold border'>
-              <div className="col-2 border">Status</div>
-              <div className="col-2 border">Rs </div>
-              <div className="col-3 border">Reason</div>
-              <div className="col-3 border">Date</div>
-              <div className="col-2 border">Time</div>
-
+            <div className='adjustCellWrapper pt-1 pb-1 font-weight-bold border'>
+              <div className=" border adjustCell">Status</div>
+              <div className=" border adjustCell">Rs </div>
+              <div className=" border adjustCell">Reason</div>
+              <div className=" border adjustCell">Date</div>
+              <div className=" border adjustCell">Time</div>
             </div>
+
+            {/* <div className='adjustCellWrapper'>
+              <div className="border cell">Credited</div>
+              <div className="border cell">1000</div>
+              <div className="border cell">fooding chicken</div>
+              <div className="border cell">81-12-2024</div>
+              <div className="border cell">12:12</div>
+            </div> */}
+
             {
               combinedData.map((val, i) => {
                 return (
-                  <div key={i} className='row ' style={{ color: val.payer_username === user ? "red" : "blue" }}>
+                  <div key={i} className='' style={{ color: val.payer_username === user ? "red" : "blue" }}>
                     {
-                      <>
-                        <div className="col-2 border padingAdjustment">{val.payer_username === user ? "Debited" : "Credited"}</div>
-                        <div className="col-2 border padingAdjustment">{val.price}</div>
-                        <div className="col-3 border padingAdjustment">{val.description}</div>
-                        <div className="col-3 border padingAdjustment">{val.date}</div>
-                        <div className="col-2 border padingAdjustment">{val.time}</div>
-                      </>
+                      <div className='adjustCellWrapper'>
+                        <div className="border cell">{val.payer_username === user ? "Debited" : "Credited"}</div>
+                        <div className="border cell">{val.price}</div>
+                        <div className="border cell">{val.description}</div>
+                        <div className="border cell">{val.date}</div>
+                        <div className="border cell">{val.time}</div>
+                      </div>
                     }
                   </div>
                 )

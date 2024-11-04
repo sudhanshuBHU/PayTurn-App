@@ -58,9 +58,9 @@ export default function Contact(props) {
                 </div>
                 <div>
                     <label htmlFor="" className=''>Description: </label> <br />
-                    <textarea name="description" id="" cols="50" rows="5" onChange={handleChange} placeholder='Type Your message here' value={contactDetails.description}></textarea>
+                    <textarea name="description" id="" cols="40" rows="5" onChange={handleChange} placeholder='Type Your message here' value={contactDetails.description}></textarea>
                 </div>
-                <div style={{ textAlign: "center" }}>
+                <div className='mt-2' style={{ textAlign: "center" }}>
                     <button className='btn btn-info ' onClick={handleSubmit}>Submit</button>
                     <button className='btn btn-info' style={{ marginLeft: '4rem' }} onClick={() => props.setDisplayContact(false)}>Hide</button>
                     {

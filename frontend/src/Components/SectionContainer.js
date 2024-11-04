@@ -12,7 +12,7 @@ export default function SectionContainer() {
         navigate('/login');
     }
     return (
-        <div className='container mt-4'>
+        <div className='container mt-2'>
             <div className='container'>
                 <div className='container myborder wrapperSectionContainer'>
                     <div className='container-section'>

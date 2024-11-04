@@ -1,5 +1,5 @@
 import React from 'react'
-import img from './utils/heading.png';
+import img from './utils/heading2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedinIn, faSuperpowers } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram, faGithub, } from '@fortawesome/free-brands-svg-icons';
@@ -17,7 +17,7 @@ export default function Footer() {
             displayContact ? <Contact setDisplayContact={setDisplayContact}/> : null
           }
           <div className="container myborder mt-3 footerSecond">
-            <div>
+            <div className='footerimg'>
               <img src={img} alt="Footer" />
             </div>
 
@@ -28,16 +28,17 @@ export default function Footer() {
               <Link to='https://sudhanshubhu.github.io/myPortfolio_Sudhanshu/' className="col inta"><FontAwesomeIcon icon={faSuperpowers} /></Link>
             </div>
             <div className="container text-center">
-              <button className='btn mb-1 footerbtn' onClick={()=>setDisplayContact(!displayContact)}> Contact us</button>
+              <button className='btn footerbtn' onClick={()=>setDisplayContact(!displayContact)}> Contact us</button>
             </div>
             <div className=''>
               <Link to='/privacy' target='_blank'><p >Privacy & Policy</p></Link>
               <Link to='/terms' target='_blank'><p>Terms & Conditions</p></Link>
             </div>
-            <div className="container mt-3">
+            <div className="container mt-2">
               &copy; {new Date().getFullYear()} Pay-Turn
             </div>
           </div>
+          <div className=""></div>
         </div>
       </div>
     </>
