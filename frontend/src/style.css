@@ -290,12 +290,12 @@ textarea {
 /* terms */
 .privacy {
     height: 100%;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
 }
 
 .terms {
     height: 100%;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
 }
 
 /* Spinner */
@@ -316,4 +316,10 @@ textarea {
 }
 .cell{
     font-size: 0.9rem;
+}
+
+/* Lend */
+.adjustCellWrapperLend{
+    display: grid;
+    grid-template-columns: 35% 25% 20% 20%;
 }

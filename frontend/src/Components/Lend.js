@@ -46,7 +46,7 @@ export default function Lend(props) {
     const handleIndividual = (v_name, amount, v_user) => {
         // console.log(v_name);
         // console.log(v_user);
-        
+
         dispatch(setUser(v_user));
         dispatch(setName(v_name));
         dispatch(setAmount(amount));
@@ -57,19 +57,25 @@ export default function Lend(props) {
         finalCalculation();
         dispatch(setDataGive(props.giveData));
         dispatch(setDataTake(props.takeData));
-    }, [props.allUsers,props.giveData,props.takeData])
+    }, [props.allUsers, props.giveData, props.takeData])
 
     return (
         <div className='container'>
             <div className="container">
                 <div className="container border border-info mt-3">
                     <h3 className='text-center'>Final Standings</h3>
-                    <div className='row pt-1 pb-1 font-weight-bold border'>
+                    {/* <div className='row pt-1 pb-1 font-weight-bold border'>
                         <div className="col-5 border">Payee</div>
                         <div className="col-3 border">Total</div>
                         <div className="col-2 border">Status</div>
                         <div className="col-2 border">View</div>
 
+                    </div> */}
+                    <div className='adjustCellWrapperLend pt-1 pb-1 font-weight-bold border'>
+                        <div className="adjustCell border">Payee</div>
+                        <div className="adjustCell border">Total</div>
+                        <div className="adjustCell border">Status</div>
+                        <div className="adjustCell border">View</div>
                     </div>
                     {
                         runningData.map((val, i) => {
@@ -77,13 +83,13 @@ export default function Lend(props) {
                                 <div key={i} className='row ' style={{ color: val.amount > 0 ? "blue" : "red" }}>
                                     {
                                         val.name === user ? "" : val.amount === 0 ? "" :
-                                            <>
-                                                <div className="col-5 border padingAdjustment">{val.name}</div>
-                                                <div className="col-3 border">{val.amount}</div>
-                                                <div className="col-2 border">{val.amount > 0 ? "Take" : "Give"}</div>
-                                                <div className="col-2 border" onClick={(e) => handleIndividual(val.name, val.amount, val.username)} style={{cursor:"pointer"}}>Click</div>
+                                            <div className='adjustCellWrapperLend'>
+                                                <div className="cell border padingAdjustment">{val.name}</div>
+                                                <div className="cell border">{val.amount}</div>
+                                                <div className="cell border">{val.amount > 0 ? "Take" : "Give"}</div>
+                                                <div className="cell border" onClick={(e) => handleIndividual(val.name, val.amount, val.username)} style={{ cursor: "pointer" }}>Click</div>
 
-                                            </>
+                                            </div>
                                     }
                                 </div>
                             )

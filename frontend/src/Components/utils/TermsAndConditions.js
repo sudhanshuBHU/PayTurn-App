@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function termsAndConditions() {
     return (
-        <div className='container'>
+        <div className='container mt-2'>
             <div className="container">
-                <div className="container terms">
+                <div className="container terms myborder">
                     <h1>Terms and Conditions</h1>
                     <div className="container">
                         <ol>

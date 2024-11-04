@@ -2,9 +2,22 @@ import React from 'react'
 
 export default function privacyAndPolicies() {
     return (
-        <div className='container'>
+        <div className='container mt-2'>
             <div className="container">
-                <div className="container privacy">
+                <div className="container myborder privacy">
+                    {/* <div className='adjustCellWrapperLend pt-1 pb-1 font-weight-bold border'>
+                        <div className="adjustCell border">Payee</div>
+                        <div className="adjustCell border">Total</div>
+                        <div className="adjustCell border">Status</div>
+                        <div className="adjustCell border">View</div>
+                    </div>
+                    <div className='adjustCellWrapperLend'>
+                        <div className="cell border padingAdjustment">Gaurav sharma</div>
+                        <div className="cell border">1000</div>
+                        <div className="cell border">take</div>
+                        <div className="cell border" style={{ cursor: "pointer" }}>Click</div>
+                    </div> */}
+
                     <h3><b>Privacy Policy</b> <br /></h3>
                     <h5><b>Last Updated: 28 Oct 2024</b></h5>
                     <div className="container">
