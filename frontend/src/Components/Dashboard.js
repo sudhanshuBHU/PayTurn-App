@@ -111,7 +111,7 @@ export default function Dashboard() {
                 <div className="container ">
                     <div className="container d-flex mb-3">
                         {
-                            isLogin ? <button className='ml-auto' id='navbtn' onClick={handleLogout}>Logout</button> : ""
+                            isLogin ? <button className='ml-auto' id='navbtn' onClick={handleLogout} style={{ cursor: "pointer" }}>Logout</button> : ""
                         }
                     </div>
                 </div>

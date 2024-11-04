@@ -54,7 +54,7 @@ export default function Individual() {
             <h2 className='text-center'>All Transactions</h2>
             <h4 style={{ color: final >= 0 ? "green" : "red" }}>Final Standing : Rs {final}</h4>
             <div className='row pt-1 pb-1 font-weight-bold border'>
-              <div className="col-2 border">What</div>
+              <div className="col-2 border">Status</div>
               <div className="col-2 border">Rs </div>
               <div className="col-3 border">Reason</div>
               <div className="col-3 border">Date</div>
@@ -67,7 +67,7 @@ export default function Individual() {
                   <div key={i} className='row ' style={{ color: val.payer_username === user ? "red" : "blue" }}>
                     {
                       <>
-                        <div className="col-2 border padingAdjustment">{val.payer_username === user ? "Debit" : "Credit"}</div>
+                        <div className="col-2 border padingAdjustment">{val.payer_username === user ? "Debited" : "Credited"}</div>
                         <div className="col-2 border padingAdjustment">{val.price}</div>
                         <div className="col-3 border padingAdjustment">{val.description}</div>
                         <div className="col-3 border padingAdjustment">{val.date}</div>
@@ -80,8 +80,8 @@ export default function Individual() {
             }
             <div className='infoIndividual'>
               <h4 className=''><u>Note:</u></h4>
-              <div style={{ color: "blue" }}>Credit means: <span> {pname} </span>gave to <span> {name} </span></div>
-              <div style={{ color: "red" }}>Debit means: <span > {name} </span> gave to <span > {pname} </span></div>
+              <div style={{ color: "blue" }}>Credited means: <span> {pname} </span>gave to <span> {name} </span></div>
+              <div style={{ color: "red" }}>Debited means: <span > {name} </span> gave to <span > {pname} </span></div>
             </div>
           </div>
         </div>
