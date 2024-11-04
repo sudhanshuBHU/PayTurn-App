@@ -64,10 +64,10 @@ export default function Individual() {
             {
               combinedData.map((val, i) => {
                 return (
-                  <div key={i} className='row ' style={{ color: val.payer_username === user ? "blue" : "red" }}>
+                  <div key={i} className='row ' style={{ color: val.payer_username === user ? "red" : "blue" }}>
                     {
                       <>
-                        <div className="col-2 border padingAdjustment">{val.payer_username === user ? "Took" : "Gave"}</div>
+                        <div className="col-2 border padingAdjustment">{val.payer_username === user ? "Debit" : "Credit"}</div>
                         <div className="col-2 border padingAdjustment">{val.price}</div>
                         <div className="col-3 border padingAdjustment">{val.description}</div>
                         <div className="col-3 border padingAdjustment">{val.date}</div>
@@ -80,8 +80,8 @@ export default function Individual() {
             }
             <div className='infoIndividual'>
               <h4 className=''><u>Note:</u></h4>
-              <div style={{ color: "red" }}>Took means: <span> {pname} </span>gave to <span> {name} </span></div>
-              <div style={{ color: "blue" }}>Gave means: <span > {name} </span> gave to <span > {pname} </span></div>
+              <div style={{ color: "blue" }}>Credit means: <span> {pname} </span>gave to <span> {name} </span></div>
+              <div style={{ color: "red" }}>Debit means: <span > {name} </span> gave to <span > {pname} </span></div>
             </div>
           </div>
         </div>
