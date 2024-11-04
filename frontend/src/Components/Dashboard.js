@@ -126,10 +126,12 @@ export default function Dashboard() {
             <Section1 name={name} user={user} />
             <div className="container">
                 <div className="container">
-                    <div className=' container buttonDashboard'>
+                    <div className='container'>
                         {
                             isLoading && <Spin />
                         }
+                    </div>
+                    <div className=' container buttonDashboard'>
                         {
                             hideEntrySec && <button className='btn dashButton' onClick={() => { setHideEntrySec(false); setHideEntry(true); }}>Add Transaction</button>
                         }

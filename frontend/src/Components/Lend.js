@@ -78,11 +78,11 @@ export default function Lend(props) {
                         <div className="adjustCell border">View</div>
                     </div>
                     {
-                        runningData.map((val, i) => {
+                        runningData.filter(m => m.name !== user && m.amount !== 0).map((val, i) => {
                             return (
                                 <div key={i} className='' style={{ color: val.amount > 0 ? "blue" : "red" }}>
                                     {
-                                        val.name === user ? "" : val.amount === 0 ? "" :
+                                        // val.name === user ? "" : val.amount === 0 ? "" :
                                             <div className='adjustCellWrapperLend'>
                                                 <div className="cell border padingAdjustment">{val.name}</div>
                                                 <div className="cell border">{val.amount}</div>
