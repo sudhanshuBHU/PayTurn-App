@@ -44,7 +44,7 @@ function App() {
           <Route path='/lend/individual' element={isAuth ? <Individual /> : <Navigate to={'/login'} />} />
           <Route path='/terms' element={<TermAndConditions />} />
           <Route path='/privacy' element={<PrivacyAndPolicies />} />
-          <Route path='/admin' element={isAuth && localStorage.getItem('payTurnRole') === 'admin'? <AdminPanel /> : <Navigate to='/login' />} />
+          <Route path='/admin' element={isAuth && localStorage.getItem('payTurnRole') === localStorage.getItem('payTurnUsername')? <AdminPanel /> : <Navigate to='/login' />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
         <Footer />

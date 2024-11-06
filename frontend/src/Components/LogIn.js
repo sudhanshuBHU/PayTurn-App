@@ -50,7 +50,7 @@ export default function LogIn() {
 
                 setTimeout(() => {
                     navigate('/admin');
-                }, 500);
+                }, 1000);
             } catch (err) {
                 console.log("err.response.data.message", err.response.data.message);
                 handleError("login failed!");
