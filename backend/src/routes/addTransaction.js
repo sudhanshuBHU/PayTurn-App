@@ -6,11 +6,13 @@ const { findAllTransactionPayer } = require('../controller/findAllTransaction');
 const { checkUsername } = require('../controller/findAllTransaction');
 const { addTransactionValidation } = require('../middlewares/AuthValidation');
 const { findAllMembers } = require('../controller/findAllTransaction');
+const { allMembers } = require('../controller/findAllTransaction');
 
 router.post('/newTransaction', addTransaction);
 router.get('/allTransactionPayer', addTransactionValidation, findAllTransactionPayer);
 router.get('/allTransactionPayee', addTransactionValidation, findAllTransactionPayee);
 router.get('/allMembers', addTransactionValidation, findAllMembers);
 router.get('/checkUsername', checkUsername);
+router.get('/findAllMembersByAdmin', addTransactionValidation, allMembers);
 
 module.exports = router;

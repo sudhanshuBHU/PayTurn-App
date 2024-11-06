@@ -1,5 +1,6 @@
 const Transaction = require('../models/transactionTable');
 const users = require('../models/userTable');
+
 const findAllTransactionPayer = async (req, res) => {
     try {
         const transactions = await Transaction.find({
@@ -58,6 +59,19 @@ const findAllMembers = async (req, res) => {
     });
 }
 
+const allMembers = async (req, res) => {
+    try {
+        const members = await users.find();
+        res.json({
+            success: true,
+            data: members,
+            message: 'All members fetched successfully'
+        });
+    } catch (error) {
+        res.json({ message: err.message, success: false });
+    }
+}
+
 const checkUsername = async (req, res) => {
     let flag = true;
     try {
@@ -74,4 +88,4 @@ const checkUsername = async (req, res) => {
     });
 }
 
-module.exports = { findAllTransactionPayee, findAllTransactionPayer, findAllMembers, checkUsername };
+module.exports = { allMembers, findAllTransactionPayee, findAllTransactionPayer, findAllMembers, checkUsername };
