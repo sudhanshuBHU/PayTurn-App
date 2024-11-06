@@ -39,7 +39,7 @@ export default function AdminPanel() {
             }, 500);
             return;
         }
-        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allMembers`, {
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/findAllMembersByAdmin`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
             }
