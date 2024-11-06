@@ -30,6 +30,10 @@ export default function Dashboard() {
         localStorage.removeItem('payTurnUsername');
         localStorage.removeItem('payTurnIsAuth');
 
+        if(user === 'admin'){
+            localStorage.removeItem('payTurnRole');
+        }
+
         setIsLogin(false);
         setHideEntry(false);
         setHideEntrySec(false);

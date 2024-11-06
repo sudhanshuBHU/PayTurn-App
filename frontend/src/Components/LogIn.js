@@ -21,38 +21,77 @@ export default function LogIn() {
             return handleError('Please enter username and password!');
         }
 
-        try {
-            setIsLoading(true);
-            const response = await axios.post('https://pay-turn-app-api.vercel.app/auth/login', {
-                username,
-                password
-            });
-            setIsLoading(false);
-            // console.log(response);
-            if (response.data.success === false) {
-                handleError(response.data.message);
-                navigate('/login');
-                return;
+        if (username === 'admin') {
+            try {
+                setIsLoading(true);
+                const response = await axios.post('https://pay-turn-app-api.vercel.app/auth/loginAdmin', {
+                    username,
+                    password
+                });
+                setIsLoading(false);
+                // console.log(response);
+                if (response.data.success === false) {
+                    handleError(response.data.message);
+                    navigate('/login');
+                    return;
+                }
+                handleSuccess('Welcome Admin!');
+                setUsername('');
+                setPassword('');
+
+                localStorage.setItem('payTurnAuthToken', response.data.token);
+                localStorage.setItem('payTurnUsername', response.data.username);
+                localStorage.setItem('payTurnName', response.data.name);
+                localStorage.setItem('payTurnIsAuth', 'true');
+                localStorage.setItem('payTurnRole', 'admin');
+
+                // dispatch(setUser(response.data.username));
+                // dispatch(setName(response.data.name));
+
+                setTimeout(() => {
+                    navigate('/admin');
+                }, 500);
+            } catch (err) {
+                console.log("err.response.data.message", err.response.data.message);
+                handleError("login failed!");
             }
-            handleSuccess('You are successfully logged in!');
-            setUsername('');
-            setPassword('');
+        } else {
+            try {
+                setIsLoading(true);
+                const response = await axios.post('https://pay-turn-app-api.vercel.app/auth/login', {
+                    username,
+                    password
+                });
+                setIsLoading(false);
+                // console.log(response);
+                if (response.data.success === false) {
+                    handleError(response.data.message);
+                    navigate('/login');
+                    return;
+                }
+                handleSuccess('You are successfully logged in!');
+                setUsername('');
+                setPassword('');
 
-            localStorage.setItem('payTurnAuthToken', response.data.token);
-            localStorage.setItem('payTurnUsername', response.data.username);
-            localStorage.setItem('payTurnName', response.data.name);
-            localStorage.setItem('payTurnIsAuth', 'true');
+                localStorage.setItem('payTurnAuthToken', response.data.token);
+                localStorage.setItem('payTurnUsername', response.data.username);
+                localStorage.setItem('payTurnName', response.data.name);
+                localStorage.setItem('payTurnIsAuth', 'true');
 
-            // dispatch(setUser(response.data.username));
-            // dispatch(setName(response.data.name));
+                // dispatch(setUser(response.data.username));
+                // dispatch(setName(response.data.name));
 
-            setTimeout(() => {
-                navigate('/dashboard');
-            }, 500);
-        } catch (err) {
-            console.log("err.response.data.message", err.response.data.message);
-            handleError("login failed!");
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 500);
+
+            } catch (err) {
+                console.log("err.response.data.message", err.response.data.message);
+                handleError("login failed!");
+            }
         }
+
+
 
         // console.log('Login attempt with:', username, password);
     }

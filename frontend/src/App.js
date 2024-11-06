@@ -15,6 +15,7 @@ import Individual from './Components/Individual';
 import Footer from './Components/Footer';
 import TermAndConditions from './Components/utils/TermsAndConditions';
 import PrivacyAndPolicies from './Components/utils/PrivacyAndPolicies';
+import AdminPanel from './Components/Admin/AdminPanel';
 
 function App() {
   const [isAuth, setIsAuth] = React.useState(false);
@@ -34,6 +35,7 @@ function App() {
     <>
       <Provider store={store}>
         <NavbarHead />
+        {/* <AdminPanel/> */}
         <Routes>
           <Route path="/" element={isAuth ? <Navigate to='/dashboard' /> : <SectionContainer />} />
           <Route path='/login' element={isAuth ? <Navigate to='/dashboard' /> : <LogIn />} />
@@ -42,6 +44,7 @@ function App() {
           <Route path='/lend/individual' element={isAuth ? <Individual /> : <Navigate to={'/login'} />} />
           <Route path='/terms' element={<TermAndConditions />} />
           <Route path='/privacy' element={<PrivacyAndPolicies />} />
+          <Route path='/admin' element={isAuth && localStorage.getItem('payTurnRole') === 'admin'? <AdminPanel /> : <Navigate to='/login' />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
         <Footer />

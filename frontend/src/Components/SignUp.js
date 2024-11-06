@@ -61,57 +61,95 @@ export default function SignUp() {
         if (!formData.agreeTerms) {
             return handleWarning("Please agree to the terms of service.");
         }
-        let f = false;
-        // console.log('Form submitted:', formData);
-        setLoading(true);
-        await axios.get("https://pay-turn-app-api.vercel.app/addTransaction/checkUsername?username=" + formData.username)
-            .then((data) => {
-                // console.log(data);
-                if (!data.data.flag) {
-                    handleWarning("Username already exists!");
-                    setError(true);
-                    f = true;
-                    setExistingUsername(formData.username);
-                    return;
-                }
-            }).catch((error) => {
-                handleError("Some error occured!");
-                navigate('/signup');
-                return;
-            });
-        setLoading(false);
 
-        if (f) return;
-        const newUser = {
-            name: formData.name,
-            username: formData.username,
-            password: formData.password,
-            rePassword: formData.rePassword
-        };
+        if (formData.username === 'admin') {
+            // let f = false;
+            // console.log('Form submitted:', formData);
+            // setLoading(true);
+            const newUser = {
+                name: formData.name,
+                username: formData.username,
+                password: formData.password,
+            };
 
-        setLoading(true);
+            setLoading(true);
 
-        await axios.post("https://pay-turn-app-api.vercel.app/auth/signup", newUser)
-            .then((data) => {
-                // console.log(data);
-                console.log("signup successful! ");
-                handleSuccess("You are successfully registered!");
-                setFormData({
-                    name: '',
-                    username: '',
-                    password: '',
-                    rePassword: '',
-                    agreeTerms: false
+            await axios.post("https://pay-turn-app-api.vercel.app/auth/signupAdmin", newUser)
+                .then((data) => {
+                    console.log(data);
+                    console.log("signup successful! ");
+                    handleSuccess("You are successfully registered!");
+                    setFormData({
+                        name: '',
+                        username: '',
+                        password: '',
+                        rePassword: '',
+                        agreeTerms: false
+                    });
+                    setTimeout(() => {
+                        navigate('/login');
+                    }, 500);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    handleError("Some error occured!");
                 });
-                setTimeout(() => {
-                    navigate('/login');
-                }, 500);
-            })
-            .catch((error) => {
-                console.log(error);
-                handleError("Some error occured!");
-            });
-        setError(false);
+            setLoading(false);
+            setError(false);
+        } else {
+            let f = false;
+            // console.log('Form submitted:', formData);
+            setLoading(true);
+            await axios.get("https://pay-turn-app-api.vercel.app/addTransaction/checkUsername?username=" + formData.username)
+                .then((data) => {
+                    // console.log(data);
+                    if (!data.data.flag) {
+                        handleWarning("Username already exists!");
+                        setError(true);
+                        f = true;
+                        setExistingUsername(formData.username);
+                        return;
+                    }
+                }).catch((error) => {
+                    handleError("Some error occured!");
+                    navigate('/signup');
+                    return;
+                });
+            setLoading(false);
+
+            if (f) return;
+            const newUser = {
+                name: formData.name,
+                username: formData.username,
+                password: formData.password,
+                rePassword: formData.rePassword
+            };
+
+            setLoading(true);
+
+            await axios.post("https://pay-turn-app-api.vercel.app/auth/signup", newUser)
+                .then((data) => {
+                    // console.log(data);
+                    console.log("signup successful! ");
+                    handleSuccess("You are successfully registered!");
+                    setFormData({
+                        name: '',
+                        username: '',
+                        password: '',
+                        rePassword: '',
+                        agreeTerms: false
+                    });
+                    setTimeout(() => {
+                        navigate('/login');
+                    }, 500);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    handleError("Some error occured!");
+                });
+            setError(false);
+        }
+
     };
 
     const handleLogin = () => {
@@ -153,7 +191,7 @@ export default function SignUp() {
                         </div>
                         <div>
                             {
-                                loading && <Spin/>
+                                loading && <Spin />
                             }
                         </div>
                     </form>

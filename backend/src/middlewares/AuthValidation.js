@@ -69,8 +69,8 @@ const addTransactionValidation = async (req, res, next) => {
         console.error(error.message);
         res.status(
             400
-        ).send({ error: error.message,success: false });
+        ).send({ error: error.message, success: false });
         return;
     }
 }
-module.exports = { signUpValidation, loginValidation,addTransactionValidation };
+module.exports = { signUpValidation, loginValidation, addTransactionValidation };

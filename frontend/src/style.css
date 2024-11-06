@@ -323,3 +323,14 @@ textarea {
     display: grid;
     grid-template-columns: 35% 25% 20% 20%;
 }
+
+/* Admin Panel */
+.mybutton{
+    background-color: rgb(70, 147, 186);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8%;
+    margin-bottom: 1rem;
+}
