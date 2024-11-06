@@ -63,39 +63,40 @@ export default function SignUp() {
         }
 
         if (formData.username === 'admin') {
+            return;
             // let f = false;
             // console.log('Form submitted:', formData);
             // setLoading(true);
-            const newUser = {
-                name: formData.name,
-                username: formData.username,
-                password: formData.password,
-            };
+            // const newUser = {
+            //     name: formData.name,
+            //     username: formData.username,
+            //     password: formData.password,
+            // };
 
-            setLoading(true);
+            // setLoading(true);
 
-            await axios.post("https://pay-turn-app-api.vercel.app/auth/signupAdmin", newUser)
-                .then((data) => {
-                    console.log(data);
-                    console.log("signup successful! ");
-                    handleSuccess("You are successfully registered!");
-                    setFormData({
-                        name: '',
-                        username: '',
-                        password: '',
-                        rePassword: '',
-                        agreeTerms: false
-                    });
-                    setTimeout(() => {
-                        navigate('/login');
-                    }, 500);
-                })
-                .catch((error) => {
-                    console.log(error);
-                    handleError("Some error occured!");
-                });
-            setLoading(false);
-            setError(false);
+            // await axios.post("https://pay-turn-app-api.vercel.app/auth/signupAdmin", newUser)
+            //     .then((data) => {
+            //         console.log(data);
+            //         console.log("signup successful! ");
+            //         handleSuccess("You are successfully registered!");
+            //         setFormData({
+            //             name: '',
+            //             username: '',
+            //             password: '',
+            //             rePassword: '',
+            //             agreeTerms: false
+            //         });
+            //         setTimeout(() => {
+            //             navigate('/login');
+            //         }, 500);
+            //     })
+            //     .catch((error) => {
+            //         console.log(error);
+            //         handleError("Some error occured!");
+            //     });
+            // setLoading(false);
+            // setError(false);
         } else {
             let f = false;
             // console.log('Form submitted:', formData);

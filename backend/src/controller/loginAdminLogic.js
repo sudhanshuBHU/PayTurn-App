@@ -24,7 +24,9 @@ const loginAdmin = async (req, res) => {
         res.json({
             message: "Admin logged in successfully",
             success: true,
-            token: token
+            token: token,
+            name: u.name,
+            username: u.username
         });
 
     } catch (error) {
