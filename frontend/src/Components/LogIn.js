@@ -77,6 +77,7 @@ export default function LogIn() {
                 localStorage.setItem('payTurnUsername', response.data.username);
                 localStorage.setItem('payTurnName', response.data.name);
                 localStorage.setItem('payTurnIsAuth', 'true');
+                localStorage.setItem('payTurnRole', 'user');
 
                 // dispatch(setUser(response.data.username));
                 // dispatch(setName(response.data.name));

@@ -12,7 +12,6 @@ export default function AdminPanel() {
     const [displyByDate, setDisplayByDate] = useState('');
     const [searchByDate, setSearchByDate] = useState('');
     const [searchByName, setSearchByName] = useState('');
-
     // console.log(searchByName);
 
     const searchByNameHandler = () => {
@@ -28,6 +27,18 @@ export default function AdminPanel() {
     }
 
     useEffect(() => {
+        if (localStorage.getItem('payTurnRole') !== localStorage.getItem('payTurnUsername')) {
+            localStorage.removeItem('payTurnAuthToken');
+            localStorage.removeItem('payTurnName');
+            localStorage.removeItem('payTurnUsername');
+            localStorage.removeItem('payTurnIsAuth');
+            localStorage.removeItem('payTurnRole');
+
+            setTimeout(() => {
+                navigate('/login');
+            }, 500);
+            return;
+        }
         axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/allMembers`, {
             headers: {
                 'token': localStorage.getItem('payTurnAuthToken')
