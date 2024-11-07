@@ -12,7 +12,7 @@ export default function AdminPanel() {
     const [searchByDate, setSearchByDate] = useState('');
     const [searchByName, setSearchByName] = useState('');
     // console.log(searchByName);
-
+    const navigate = useNavigate();
     const searchByNameHandler = async () => {
         // db connection
         setDisplayNames(true);

@@ -12,12 +12,13 @@ const addTransactionRouter = require('./src/routes/addTransaction');
 const contactus = require('./src/routes/contactus');
 
 const originAllowed = ["https://pay-turn-app.vercel.app", "http://localhost:3000"];
-app.options('*', cors());
+
 app.use(cors({
-    // origin: "https://pay-turn-app.vercel.app",
     origin: (origin, callback) => {
         // Allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
+
+        // Check if origin is in the allowed list
         if (originAllowed.includes(origin)) {
             callback(null, true);
         } else {
@@ -26,6 +27,7 @@ app.use(cors({
     },
     credentials: true
 }));
+
 
 const port = `${process.env.PORT}` || 8000;
 // const databaseUrl = process.env.DATABASE_URL;
