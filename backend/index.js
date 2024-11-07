@@ -11,9 +11,19 @@ const authRouter = require('./src/routes/signupAndLoginAuth');
 const addTransactionRouter = require('./src/routes/addTransaction');
 const contactus = require('./src/routes/contactus');
 
-app.options('*', cors()); 
+const originAllowed = ["https://pay-turn-app.vercel.app", "http://localhost:3000"];
+app.options('*', cors());
 app.use(cors({
-    origin: "https://pay-turn-app.vercel.app",
+    // origin: "https://pay-turn-app.vercel.app",
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (originAllowed.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }));
 
@@ -31,10 +41,10 @@ app.use(bodyParser.json());
 // }
 // app.options('*', cors(corsOptions));
 
-    // {
-    // origin: "*",
-    // credentials: true,
-    // methods: ["GET", "POST", "PUT", "DELETE"]
+// {
+// origin: "*",
+// credentials: true,
+// methods: ["GET", "POST", "PUT", "DELETE"]
 // })
 
 // signup and login routes

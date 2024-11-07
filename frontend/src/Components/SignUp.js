@@ -63,7 +63,8 @@ export default function SignUp() {
         }
 
         if (formData.username === 'admin') {
-            return;
+            return handleError("admin not allowed");
+            // return;
             // let f = false;
             // console.log('Form submitted:', formData);
             // setLoading(true);

@@ -4,21 +4,38 @@ import axios, { all } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminPanel() {
-    const [allUsers, setAllUsers] = useState(["anshu", "sunil", "abcd"]);
-    const navigate = useNavigate();
+    const [allUsers, setAllUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [displayAllUsers, setDisplayAllUsers] = useState(false);
     const [displayNames, setDisplayNames] = useState(false);
-    const [displyByDate, setDisplayByDate] = useState('');
+    const [displyByDate, setDisplayByDate] = useState(false);
     const [searchByDate, setSearchByDate] = useState('');
     const [searchByName, setSearchByName] = useState('');
     // console.log(searchByName);
 
-    const searchByNameHandler = () => {
+    const searchByNameHandler = async () => {
         // db connection
         setDisplayNames(true);
         console.log(searchByName);
 
+        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/findAllMembersByAdmin`, {
+            headers: {
+                'token': localStorage.getItem('payTurnAuthToken')
+            }
+        })
+            .then((res) => {
+                handleSuccess("Data Fetched Successfully");
+                // let temp = res.data.data;
+                // temp.sort((u,v)=>{
+                //     return u<v;
+                // });
+                setAllUsers(allUsers);
+                // console.log("ALL members Data");
+                // console.log(res.data.data);
+            })
+            .catch(err => {
+                handleError("Session Expired");
+            });
     }
     const searchByDateHandler = () => {
         // db connection
@@ -46,9 +63,13 @@ export default function AdminPanel() {
         })
             .then((res) => {
                 handleSuccess("Data Fetched Successfully");
-                // setAllUsers(res.data.data);
-                console.log("ALL members Data");
-                console.log(res.data.data);
+                let temp = res.data.data;
+                temp.sort((u,v)=>{
+                    return u<v;
+                });
+                setAllUsers(allUsers);
+                // console.log("ALL members Data");
+                // console.log(res.data.data);
             })
             .catch(err => {
                 handleError("Session Expired");
@@ -80,13 +101,24 @@ export default function AdminPanel() {
                     {
                         displayAllUsers &&
                         <div className='myborder p-1'>
-                            {
-                                allUsers.filter(val => val !== 'admin').map((user, index) => (
-                                    <div key={index}>
-                                        {user}
-                                    </div>
-                                ))
-                            }
+                            <ol>
+                                {
+                                    allUsers.map((user, index) => (
+                                        <div key={index} style={{borderBottom:"red"}}>
+                                            <li>
+                                                <div>
+                                                    <h5>{user.name}</h5>
+                                                    <b>Username:</b> {user.username} &nbsp; <br />
+                                                    <b>Password: </b> {user.password} <br />
+                                                    <b>CreatedAt: </b> {user.createdAt} <br />
+                                                    <b>UpdatedAt: </b> {user.updatedAt}
+                                                </div>
+
+                                            </li>
+                                        </div>
+                                    ))
+                                }
+                            </ol>
                         </div>
                     }
                 </div>
@@ -98,7 +130,7 @@ export default function AdminPanel() {
                     <select name="name" id="" onClick={(value => setSearchByName(value.target.value))}>
                         {
                             allUsers.map((name, index) => (
-                                <option key={index} value={name}>{name}</option>
+                                <option key={index} value={name.username}>{name.name} - {name.username}</option>
                             ))}
                     </select>
                     <div className='text-right'>
