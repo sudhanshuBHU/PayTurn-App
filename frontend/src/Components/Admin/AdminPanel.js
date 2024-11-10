@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { handleSuccess, handleError } from '../utils/toast';
 import axios, { all } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 export default function AdminPanel() {
     const [allUsers, setAllUsers] = useState([]);
@@ -16,26 +17,28 @@ export default function AdminPanel() {
     const searchByNameHandler = async () => {
         // db connection
         setDisplayNames(true);
+        setLoading(true);
         console.log(searchByName);
 
-        axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/findAllMembersByAdmin`, {
-            headers: {
-                'token': localStorage.getItem('payTurnAuthToken')
-            }
-        })
-            .then((res) => {
-                handleSuccess("Data Fetched Successfully");
-                // let temp = res.data.data;
-                // temp.sort((u,v)=>{
-                //     return u<v;
-                // });
-                setAllUsers(allUsers);
-                // console.log("ALL members Data");
-                // console.log(res.data.data);
-            })
-            .catch(err => {
-                handleError("Session Expired");
-            });
+        // axios.get(`https://pay-turn-app-api.vercel.app/addTransaction/findAllMembersByAdmin`, {
+        //     headers: {
+        //         'token': localStorage.getItem('payTurnAuthToken')
+        //     }
+        // })
+        //     .then((res) => {
+        //         handleSuccess("Data Fetched Successfully");
+        //         // let temp = res.data.data;
+        //         // temp.sort((u,v)=>{
+        //         //     return u<v;
+        //         // });
+        //         // setAllUsers(allUsers);
+        //         // console.log("ALL members Data");
+        //         // console.log(res.data.data);
+        //     })
+        //     .catch(err => {
+        //         handleError("Session Expired");
+        //     });
+        setLoading(false);
     }
     const searchByDateHandler = () => {
         // db connection
@@ -64,12 +67,18 @@ export default function AdminPanel() {
             .then((res) => {
                 handleSuccess("Data Fetched Successfully");
                 let temp = res.data.data;
-                temp.sort((u,v)=>{
-                    return u<v;
+
+                // Sort the array by the 'name' property in ascending order
+                temp.sort((a, b) => {
+                    return a.name.localeCompare(b.name);
                 });
-                setAllUsers(allUsers);
+                setAllUsers(temp);
                 // console.log("ALL members Data");
-                // console.log(res.data.data);
+                // console.log(temp);
+                handleSuccess('data fetched successfully');
+                // console.log(allUsers);
+
+
             })
             .catch(err => {
                 handleError("Session Expired");
@@ -84,6 +93,10 @@ export default function AdminPanel() {
                     navigate('/login');
                 }, 1000);
             });
+        // allUsers.forEach(val => {
+        //     console.log(val.name);
+
+        // });
     }, []);
     return (
         <div className='container'>
@@ -104,14 +117,26 @@ export default function AdminPanel() {
                             <ol>
                                 {
                                     allUsers.map((user, index) => (
-                                        <div key={index} style={{borderBottom:"red"}}>
+                                        <div key={index} style={{ borderBottom: "red" }}>
                                             <li>
-                                                <div>
-                                                    <h5>{user.name}</h5>
-                                                    <b>Username:</b> {user.username} &nbsp; <br />
-                                                    <b>Password: </b> {user.password} <br />
-                                                    <b>CreatedAt: </b> {user.createdAt} <br />
-                                                    <b>UpdatedAt: </b> {user.updatedAt}
+                                                <div className='mt-2'>
+                                                    <b style={{ color: "red" }}>{user.name}</b>
+                                                    <div>
+                                                        <b>Username: </b> {user.username}
+                                                    </div>
+                                                    <div>
+                                                        <b>DB _id: </b>{user._id}
+                                                    </div>
+                                                    <div className='password-container'>
+                                                        <b>Password: </b> {user.password}
+                                                    </div>
+                                                    <div>
+                                                        <b>CreatedAt: </b> {user.createdAt}
+                                                    </div>
+                                                    <div>
+                                                        <b>UpdatedAt: </b> {user.updatedAt}
+
+                                                    </div>
                                                 </div>
 
                                             </li>
@@ -159,7 +184,8 @@ export default function AdminPanel() {
                         <div className="details myborder p-1">All details here
                             <div className='text-right'>
                                 <button className='btn btn-info' onClick={() => setDisplayByDate(false)}>close</button>
-                            </div></div>
+                            </div>
+                        </div>
                     }
                 </div>
 
@@ -168,10 +194,10 @@ export default function AdminPanel() {
                         <b>Change Password of </b> &nbsp;
                     </label>
                     <select name="name" id="">
-                        {
+                        {/* {
                             allUsers.map((name, index) => (
                                 <option key={index} value={name}>{name}</option>
-                            ))}
+                            ))} */}
                     </select>
                     <div className='text-right'>
                         <button className='btn btn-info mb-2'> Change </button>
@@ -183,15 +209,16 @@ export default function AdminPanel() {
                         <b>Delete Account of </b> &nbsp;
                     </label>
                     <select name="delete" id="">
-                        {
+                        {/* {
                             allUsers.map((name, index) => (
                                 <option key={index} value={name}>{name}</option>
-                            ))}
+                            ))} */}
                     </select>
                     <div className='text-right'>
                         <button className='btn btn-info mb-2'> Delete </button>
                     </div>
                 </div>
+                <ToastContainer />
             </div>
         </div>
     )

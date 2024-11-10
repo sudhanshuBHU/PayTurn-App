@@ -334,3 +334,6 @@ textarea {
     border-radius: 8%;
     margin-bottom: 1rem;
 }
+.password-container{
+    overflow-x: scroll;
+}
