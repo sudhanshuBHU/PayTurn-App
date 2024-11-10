@@ -5,7 +5,7 @@ import Spin from './utils/Spin';
 
 export default function EntryTransaction(props) {
     // const members = ["Aakash", "Anshu", "Abhay", "Soum", "Jindal", "Riya"];
-    const members = props.allUsers;
+    const members = props.allUsers.sort((a, b) => a.name.localeCompare(b.name));
     const user = props.name;
     const payerUser = props.user;
     const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD

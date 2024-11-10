@@ -46,6 +46,18 @@ export default function AdminPanel() {
         console.log(searchByDate);
     }
 
+    const handleLogoutAdmin = () => {
+        localStorage.removeItem('payTurnAuthToken');
+        localStorage.removeItem('payTurnUsername');
+        localStorage.removeItem('payTurnName');
+        localStorage.removeItem('payTurnIsAuth');
+        localStorage.removeItem('payTurnRole');
+        handleSuccess("Logged out successfully");
+        setTimeout(() => {
+            navigate('/login');
+        }, 1000);
+    }
+
     useEffect(() => {
         if (localStorage.getItem('payTurnRole') !== localStorage.getItem('payTurnUsername')) {
             localStorage.removeItem('payTurnAuthToken');
@@ -53,7 +65,7 @@ export default function AdminPanel() {
             localStorage.removeItem('payTurnUsername');
             localStorage.removeItem('payTurnIsAuth');
             localStorage.removeItem('payTurnRole');
-
+            handleError("Not an Admin");
             setTimeout(() => {
                 navigate('/login');
             }, 500);
@@ -103,6 +115,9 @@ export default function AdminPanel() {
             <div className="container">
                 <div className="container text-center">
                     <h1>Admin Panel</h1>
+                </div>
+                <div className='container text-right'>
+                    <button className='btn btn-danger mb-2' onClick={handleLogoutAdmin}> Logout </button>
                 </div>
                 <div className=' container myborder pt-2 pb-2'>
                     <label htmlFor="members">
