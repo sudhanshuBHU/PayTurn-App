@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Contact from './utils/Contact';
 
 export default function Footer() {
-  const [displayContact, setDisplayContact] = React.useState(false);
+  const [displayContact, setDisplayContact] = React.useState(true);
 
   return (
     <>
